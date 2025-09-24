@@ -10,12 +10,17 @@ export const SideHeader = () => {
       <div className="border border-gray-400 flex gap-1 items-center rounded-3xl cursor-pointer">
         <input
           type="text"
-          className="outline-none cursor-pointer w-26 sm:w-34 md:w-auto"
+          className="outline-none cursor-pointer w-26 sm:w-34 md:w-auto search-input"
           readOnly
           placeholder="  Search"
           name="search"
         />
-        <Image src={search} alt="search" priority className="w-9 h-9" />
+        <Image
+          src={search}
+          alt="search"
+          priority
+          className="w-6 h-6 sm:w-9 sm:h-9"
+        />
       </div>
       <Link href={"/cart"} className="relative">
         <FaShoppingCart size={22} className="text-gray-600" />

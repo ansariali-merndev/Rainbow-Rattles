@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+
+@media (max-width: 360px) {
+  .search-input {
+    width: 72px; /* approx w-18 */
+  }
+}
