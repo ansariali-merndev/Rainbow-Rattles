@@ -52,3 +52,6 @@ export const CollectionFilter = [
   { id: 2, label: "Best seller" },
   { id: 3, label: "New arrivals" },
 ];
+
+
+export const ITEM_PER_PAGE: number = 6;

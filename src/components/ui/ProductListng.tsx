@@ -6,16 +6,25 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 
 import { DefaultSorting } from "@/components/blocks/DefaultSorting";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TypeStore } from "@/lib/store";
+import { useEffect } from "react";
+import { setTotalPages } from "@/lib/slices/PageableSlices";
+import { ITEM_PER_PAGE } from "@/utils/constant";
 
 export const ProductListng = () => {
   const product = useSelector((s: TypeStore) => s.product);
+  const pages = useSelector((s: TypeStore) => s.pageable);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setTotalPages(Math.ceil(product.length / ITEM_PER_PAGE)));
+  }, [product, dispatch]);
 
   return (
     <ul className="grid grid-cols-1 gap-8 col-span-2 mt-12 md:mt-0 relative pt-0">
       <DefaultSorting />
-      {product.slice(0, 6).map((item, idx) => (
+      {product.slice(pages.firstIdx, pages.lastIdx).map((item, idx) => (
         <li
           key={`${item.id}-${idx}`}
           className="grid grid-cols-1 md:grid-cols-4 p-7 rounded-md gap-2 md:gap-26"

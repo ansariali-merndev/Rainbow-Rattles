@@ -5,9 +5,13 @@ import {
   sortHighToLow,
   sortLowToHigh,
 } from "@/lib/slices/ProductSlices";
-import { useDispatch } from "react-redux";
+import { TypeStore } from "@/lib/store";
+import { ITEM_PER_PAGE } from "@/utils/constant";
+import { useDispatch, useSelector } from "react-redux";
 
 export const DefaultSorting = () => {
+  const pages = useSelector((s: TypeStore) => s.pageable);
+  const product = useSelector((s: TypeStore) => s.product);
   const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -32,7 +36,10 @@ export const DefaultSorting = () => {
         <option value="LOW_TO_HIGH">Low To High</option>
         <option value="HIGH_TO_LOW">High To Low</option>
       </select>
-      <p className="text-xs md:text-base">Showing 1 to 6 result</p>
+      <p className="text-xs md:text-base">
+        Showing {pages.firstIdx + 1} to{" "}
+        {Math.min(pages.firstIdx + ITEM_PER_PAGE, product.length)} result
+      </p>
     </div>
   );
 };

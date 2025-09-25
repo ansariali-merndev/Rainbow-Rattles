@@ -22,7 +22,6 @@ export const ProductCategories = () => {
 
   useEffect(() => {
     dispatch(filterByCategories(selectedCategory));
-    console.log(selectedCategory);
   }, [dispatch, selectedCategory]);
 
   useEffect(() => {
