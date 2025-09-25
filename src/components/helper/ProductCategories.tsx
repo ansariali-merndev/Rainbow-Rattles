@@ -1,12 +1,29 @@
 "use client";
 
+import { filterByCategories } from "@/lib/slices/ProductSlices";
 import { ShopData } from "@/utils/featuresSection";
 import React, { useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 
 export const ProductCategories = () => {
   const categories = [...new Set(ShopData.map((item) => item.category))];
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
+  const dispatch = useDispatch();
+
+  const handleSelectedCategory = (item: string, checked: boolean) => {
+    if (checked) {
+      setSelectedCategory((prev) => [...prev, item]);
+    } else {
+      setSelectedCategory((prev) => prev.filter((c) => c !== item));
+    }
+  };
+
+  useEffect(() => {
+    dispatch(filterByCategories(selectedCategory));
+    console.log(selectedCategory);
+  }, [dispatch, selectedCategory]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -50,7 +67,12 @@ export const ProductCategories = () => {
         <ul className={`my-4 md:my-8 flex flex-col gap-2`}>
           {categories.map((item) => (
             <li key={`${item} - abc`} className="flex gap-2 items-center">
-              <input type="checkbox" name={`${item}`} />
+              <input
+                type="checkbox"
+                name={`${item}`}
+                checked={selectedCategory.includes(item)}
+                onChange={(e) => handleSelectedCategory(item, e.target.checked)}
+              />
               <p className="text-md md:text-lg">{item}</p>
             </li>
           ))}
