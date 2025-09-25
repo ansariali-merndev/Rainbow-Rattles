@@ -23,7 +23,7 @@ export const HeroSection = () => {
         </p>
         <div className="mt-6 md:mt-10">
           <Link
-            href={"/shop"}
+            href={"/product"}
             className="bg-[#FFE926] text-[#000] px-4 py-1 rounded-md md:text-xl cursor-pointer"
           >
             Shop Now

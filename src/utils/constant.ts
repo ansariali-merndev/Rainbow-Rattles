@@ -42,7 +42,7 @@ export const ImageArray = [
 
 export const Nav = [
   { label: "Home", href: "/" },
-  { label: "Shop", href: "/shop" },
+  { label: "Product", href: "/product" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
