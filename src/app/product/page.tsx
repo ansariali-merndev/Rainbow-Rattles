@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TypeStore } from "@/lib/store";
 import { decrementPage, incrementPage } from "@/lib/slices/PageableSlices";
 
+
 export default function Product() {
   const pages = useSelector((state: TypeStore) => state.pageable);
   const dispatch = useDispatch();

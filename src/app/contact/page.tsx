@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/blocks/ContactForm";
+import { Metadata } from "next";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
 const contactDetail = [
@@ -10,6 +11,10 @@ const contactDetail = [
     val: "1930 marigold lane, way Miami, Florida USA",
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Contact",
+};
 
 export default function Contact() {
   return (

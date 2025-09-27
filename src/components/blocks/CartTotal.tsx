@@ -1,14 +1,17 @@
 "use client";
 
+import { initCartData } from "@/lib/slices/CartSlices";
 import { TypeStore } from "@/lib/store";
+import { handleSwal } from "@/utils/Swal";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const CartTotal = () => {
   const cart = useSelector((s: TypeStore) => s.cart);
   const product = useSelector((s: TypeStore) => s.product);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [subTotal, setSubTotal] = useState(0);
   const shippingFee = 200; // Fixed value
@@ -24,6 +27,14 @@ export const CartTotal = () => {
     }, 0);
     setSubTotal(total);
   }, [cart, product]);
+
+  const handleCheckout = () => {
+    handleSwal(
+      "success",
+      "Your order has been placed successfully! Thank you for shopping with us."
+    );
+    dispatch(initCartData([]));
+  };
 
   return (
     <section
@@ -50,7 +61,10 @@ export const CartTotal = () => {
         </div>
 
         <div className="flex gap-3">
-          <button className="mt-4 bg-[#FFE926] w-full py-3 rounded-md cursor-pointer">
+          <button
+            onClick={handleCheckout}
+            className="mt-4 bg-[#FFE926] w-full py-3 rounded-md cursor-pointer"
+          >
             Proceed to checkout
           </button>
           <button
