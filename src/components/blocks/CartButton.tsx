@@ -28,7 +28,7 @@ export const CartButton = ({ itemId }: { itemId: number }) => {
   return (
     <button
       onClick={handleCart}
-      className="bg-[#0F83B2] text-white px-4 py-1.5 rounded-md cursor-pointer flex items-center justify-center gap-2"
+      className="bg-[#0F83B2] text-white px-4 py-1.5 rounded-md cursor-pointer flex items-center justify-center gap-2 text-sm md:text-base"
     >
       <span className="pb-1">
         <FaShoppingCart />

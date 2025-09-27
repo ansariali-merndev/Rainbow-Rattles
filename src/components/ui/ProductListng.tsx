@@ -2,8 +2,6 @@
 
 import { Star } from "@/components/reusables/Star";
 import Image from "next/image";
-import { FaHeart } from "react-icons/fa6";
-
 import { DefaultSorting } from "@/components/blocks/DefaultSorting";
 import { useDispatch, useSelector } from "react-redux";
 import { TypeStore } from "@/lib/store";
@@ -11,6 +9,7 @@ import { useEffect } from "react";
 import { setTotalPages } from "@/lib/slices/PageableSlices";
 import { ITEM_PER_PAGE } from "@/utils/constant";
 import { CartButton } from "../blocks/CartButton";
+import { WishlistButton } from "../blocks/WishlistButton";
 
 export const ProductListng = () => {
   const product = useSelector((s: TypeStore) => s.product);
@@ -53,12 +52,7 @@ export const ProductListng = () => {
             </div>
             <div className="mt-8 flex gap-4 items-center">
               <CartButton itemId={item.id} />
-              <button
-                className="px-4 py-1.5 rounded-md bg-[#0F83B2] pb-1 cursor-pointer"
-                style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
-              >
-                <FaHeart fill="#fff" size={21} />
-              </button>
+              <WishlistButton itemId={item.id} />
             </div>
           </div>
         </li>
