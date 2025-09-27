@@ -37,17 +37,15 @@ export default function Wishlist() {
           {data.map((item) => (
             <li
               key={item.id}
-              className="border-b p-4 rounded-lg flex flex-col gap-4 md:grid md:grid-cols-4 md:items-center md:text-center relative"
+              className="border-b rounded-lg flex flex-col gap-4 md:grid md:grid-cols-4 md:items-center md:text-center relative p-4"
             >
               {/* Image + Title */}
               <div className="flex flex-col md:flex-row md:items-center gap-4 col-span-2 text-start">
-                <div className="h-24 w-24 flex items-center justify-center">
+                <div className="flex items-center justify-center">
                   <Image
                     src={item.img}
                     alt={item.title}
-                    width={96}
-                    height={96}
-                    className="object-contain rounded-lg"
+                    className="object-contain rounded-lg h-40 w-40"
                   />
                 </div>
                 <p className="text-lg font-semibold md:font-extrabold">
@@ -63,7 +61,7 @@ export default function Wishlist() {
                 <CartButton itemId={item.id} />
                 <button
                   onClick={() => dispatch(removeFromWishlist(item.id))}
-                  className="text-red-600 text-lg"
+                  className="text-gray-600 text-lg absolute top-2 right-4 cursor-pointer"
                 >
                   <FaTrash />
                 </button>
