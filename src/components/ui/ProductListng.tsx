@@ -2,7 +2,6 @@
 
 import { Star } from "@/components/reusables/Star";
 import Image from "next/image";
-import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 
 import { DefaultSorting } from "@/components/blocks/DefaultSorting";
@@ -11,6 +10,7 @@ import { TypeStore } from "@/lib/store";
 import { useEffect } from "react";
 import { setTotalPages } from "@/lib/slices/PageableSlices";
 import { ITEM_PER_PAGE } from "@/utils/constant";
+import { CartButton } from "../blocks/CartButton";
 
 export const ProductListng = () => {
   const product = useSelector((s: TypeStore) => s.product);
@@ -52,12 +52,7 @@ export const ProductListng = () => {
               <Star rating={item.rating} />
             </div>
             <div className="mt-8 flex gap-4 items-center">
-              <button className="bg-[#0F83B2] text-white px-4 py-1.5 rounded-md cursor-pointer flex items-center justify-center gap-2">
-                <span className="pb-1">
-                  <FaShoppingCart />
-                </span>{" "}
-                Add To Cart
-              </button>
+              <CartButton itemId={item.id} />
               <button
                 className="px-4 py-1.5 rounded-md bg-[#0F83B2] pb-1 cursor-pointer"
                 style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
