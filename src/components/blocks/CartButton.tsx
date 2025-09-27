@@ -2,6 +2,7 @@
 
 import { addToCart, removeFromCart } from "@/lib/slices/CartSlices";
 import { TypeStore } from "@/lib/store";
+import { handleToastSwal } from "@/utils/Swal";
 import React, { useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,8 +21,10 @@ export const CartButton = ({ itemId }: { itemId: number }) => {
   const handleCart = () => {
     if (isCartItem) {
       dispatch(removeFromCart(itemId));
+      handleToastSwal("info", "Item successfully removed from your cart.");
     } else {
       dispatch(addToCart(itemId));
+      handleToastSwal("success", "Item added to your cart successfully!");
     }
   };
 

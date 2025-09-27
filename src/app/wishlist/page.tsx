@@ -9,6 +9,7 @@ import Image from "next/image";
 import { FaTrash } from "react-icons/fa";
 import { CartButton } from "@/components/blocks/CartButton";
 import { NoProduct } from "@/components/reusables/NoProduct";
+import { handleToastSwal } from "@/utils/Swal";
 
 export default function Wishlist() {
   const wishlist = useSelector((s: TypeStore) => s.wishlist);
@@ -20,6 +21,11 @@ export default function Wishlist() {
       ShopData.filter((item) => wishlist.some((val) => val.id === item.id))
     );
   }, [wishlist]);
+
+  const handleDelete = (id: number) => {
+    handleToastSwal("info", "The item has been removed from your wishlist.");
+    dispatch(removeFromWishlist(id));
+  };
 
   return (
     <section className="my-6">
@@ -60,7 +66,7 @@ export default function Wishlist() {
               <div className="flex items-center md:justify-center gap-3">
                 <CartButton itemId={item.id} />
                 <button
-                  onClick={() => dispatch(removeFromWishlist(item.id))}
+                  onClick={() => handleDelete(item.id)}
                   className="text-gray-600 text-lg absolute top-2 right-4 cursor-pointer"
                 >
                   <FaTrash />

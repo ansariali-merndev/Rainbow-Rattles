@@ -2,6 +2,7 @@
 
 import { addToWishList, removeFromWishlist } from "@/lib/slices/WishlistSlice";
 import { TypeStore } from "@/lib/store";
+import { handleToastSwal } from "@/utils/Swal";
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,9 +22,14 @@ export const WishlistButton = ({ itemId }: { itemId: number }) => {
     if (!isWhislist) {
       dispatch(addToWishList(itemId));
       setIsWhislist(true);
+      handleToastSwal(
+        "success",
+        "This item has been added to your wishlist. You can view it anytime!"
+      );
     } else {
       dispatch(removeFromWishlist(itemId));
       setIsWhislist(false);
+      handleToastSwal("info", "The item has been removed from your wishlist.");
     }
   };
 

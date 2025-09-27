@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { TypeStore } from "@/lib/store";
+import { handleToastSwal } from "@/utils/Swal";
 
 export const Card = ({ item }: { item: ShopType }) => {
   const cart = useSelector((s: TypeStore) => s.cart);
@@ -20,6 +21,11 @@ export const Card = ({ item }: { item: ShopType }) => {
   useEffect(() => {
     setQty(cart.find((val) => val.id === item.id)?.qty || 1);
   }, [item.id, cart]);
+
+  const handleDelete = (id: number) => {
+    handleToastSwal("info", "Item successfully removed from your cart.");
+    dispatch(removeFromCart(id));
+  };
 
   return (
     <li className="border-b p-4 rounded-lg flex flex-col gap-4 md:grid md:grid-cols-5 md:items-center md:justify-center md:text-center relative">
@@ -60,7 +66,7 @@ export const Card = ({ item }: { item: ShopType }) => {
       <p className="font-bold text-green-600">${item.price * qty}</p>
 
       <p
-        onClick={() => dispatch(removeFromCart(item.id))}
+        onClick={() => handleDelete(item.id)}
         className="text-gray-600 absolute top-2 right-6 cursor-pointer"
       >
         <FaTrash />
