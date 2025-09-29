@@ -1,3 +1,4 @@
+import Error from "@/app/not-found";
 import { BlogData } from "@/utils/Blog";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +14,7 @@ export default async function BlogPage({ params }: { params: props }) {
   const item = BlogData.find((f) => f.id === parseInt(blogId));
 
   if (!item) {
-    return <p>Error</p>;
+    return <Error />;
   }
 
   return (
